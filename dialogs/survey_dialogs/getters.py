@@ -100,7 +100,7 @@ async def get_photo(msg: Message, widget: MessageInput, dialog_manager: DialogMa
     male = dialog_manager.dialog_data.get('male')
     photo = msg.photo[-1].file_id
     dialog_manager.dialog_data['photo'] = photo
-    if male == 'women':
+    if True:  # male == 'women':
         text = get_form_text(
             '@' + msg.from_user.username if msg.from_user.username else '-',
             dialog_manager.dialog_data
