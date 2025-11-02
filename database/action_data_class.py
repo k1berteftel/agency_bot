@@ -143,6 +143,13 @@ class DataInteraction():
             ))
             await session.commit()
 
+    async def set_interviewed(self, user_id: int):
+        async with self._sessions() as session:
+            await session.execute(update(UsersTable).where(UsersTable.user_id == user_id).values(
+                interviewed=True
+            ))
+            await session.commit()
+
     async def del_deeplink(self, link: str):
         async with self._sessions() as session:
             await session.execute(delete(DeeplinksTable).where(DeeplinksTable.link == link))

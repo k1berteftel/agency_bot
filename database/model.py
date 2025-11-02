@@ -20,6 +20,7 @@ class UsersTable(Base):
     active: Mapped[int] = mapped_column(Integer, default=1)
     activity: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=False), default=func.now())
     entry: Mapped[datetime.datetime] = mapped_column(DateTime(timezone=False), default=func.now())
+    interviewed: Mapped[bool] = mapped_column(Boolean, default=False, nullable=True)
 
 
 class DeeplinksTable(Base):

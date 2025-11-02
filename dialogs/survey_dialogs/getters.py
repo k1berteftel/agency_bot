@@ -98,6 +98,7 @@ async def get_contact(msg: Message, widget: ManagedTextInput, dialog_manager: Di
 
 async def get_photo(msg: Message, widget: MessageInput, dialog_manager: DialogManager):
     male = dialog_manager.dialog_data.get('male')
+    session: DataInteraction = dialog_manager.middleware_data.get('session')
     photo = msg.photo[-1].file_id
     dialog_manager.dialog_data['photo'] = photo
     if True:  # male == 'women':
@@ -128,5 +129,6 @@ async def get_photo(msg: Message, widget: MessageInput, dialog_manager: DialogMa
                 counter += 1
         await dialog_manager.start(state=startSG.start, mode=StartMode.RESET_STACK)
         await msg.delete()
+        await session.set_interviewed(msg.from_user.id)
         return
     await dialog_manager.start(PaymentSG.choose_payment, data=dialog_manager.dialog_data)

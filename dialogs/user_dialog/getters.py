@@ -19,7 +19,15 @@ async def start_getter(event_from_user: User, dialog_manager: DialogManager, **k
     admins.extend([admin.user_id for admin in await session.get_admins()])
     if event_from_user.id in admins:
         admin = True
-    return {'admin': admin}
+    user = await session.get_user(event_from_user.id)
+    if user.interviewed:
+        text = '✅Анкета отправлена'
+    else:
+        text = '📝 Разместить анкету'
+    return {
+        'text': text,
+        'admin': admin
+    }
 
 
 async def choose_male(clb: CallbackQuery, widget: Button, dialog_manager: DialogManager):
