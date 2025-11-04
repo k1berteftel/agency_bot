@@ -127,8 +127,8 @@ async def get_photo(msg: Message, widget: MessageInput, dialog_manager: DialogMa
                 except Exception:
                     ...
                 counter += 1
-        await dialog_manager.start(state=startSG.start, mode=StartMode.RESET_STACK)
-        await msg.delete()
         await session.set_interviewed(msg.from_user.id)
+        await msg.delete()
+        await dialog_manager.start(state=startSG.start, mode=StartMode.RESET_STACK)
         return
     await dialog_manager.start(PaymentSG.choose_payment, data=dialog_manager.dialog_data)
