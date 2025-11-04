@@ -112,7 +112,8 @@ async def get_photo(msg: Message, widget: MessageInput, dialog_manager: DialogMa
             caption=text
         )
         await msg.answer('✅Ваша анкета была успешно отправлена на модерацию, '
-                         'в скором времени мы выложим ее в наш канал')
+                         'в скором времени мы выложим ее в наш канал\n\n<b>Благодарим вас за уделенное вами время, '
+                         'вы закончили оформление анкеты</b>')
         if dialog_manager.has_context():
             await dialog_manager.done()
             try:

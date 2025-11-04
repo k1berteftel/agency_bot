@@ -20,6 +20,7 @@ async def start_getter(event_from_user: User, dialog_manager: DialogManager, **k
     if event_from_user.id in admins:
         admin = True
     user = await session.get_user(event_from_user.id)
+    print(user)
     if user.interviewed:
         text = '✅Анкета отправлена'
     else:
@@ -28,6 +29,15 @@ async def start_getter(event_from_user: User, dialog_manager: DialogManager, **k
         'text': text,
         'admin': admin
     }
+
+
+async def choose_male_switcher(clb: CallbackQuery, widget: Button, dialog_manager: DialogManager):
+    session: DataInteraction = dialog_manager.middleware_data.get('session')
+    user = await session.get_user(clb.from_user.id)
+    if user.interviewed:
+        await clb.answer('Вы уже заполняли анкету, пожалуйста ожидайте проверку')
+        return
+    await dialog_manager.switch_to(startSG.choose_male)
 
 
 async def choose_male(clb: CallbackQuery, widget: Button, dialog_manager: DialogManager):

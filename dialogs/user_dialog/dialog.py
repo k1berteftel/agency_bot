@@ -14,7 +14,7 @@ user_dialog = Dialog(
               'мусульманского брачного агентства <b>Noor Nikah!</b>\n\n💡Наша цель — помочь вам найти свою '
               'вторую половинку для создания крепкой и счастливой семьи\nНу что, начнем?'),
         Column(
-            SwitchTo(Format('{text}'), id='choose_male_switcher', state=startSG.choose_male),
+            Button(Format('{text}'), id='choose_male_switcher', on_click=getters.choose_male_switcher),
             Url(Const('🕌Наш канал'), id='channel_url', url=Const("https://t.me/noor_nikah")),
             Url(Const('🆘Поддержка'), id='support_url', url=Const('https://t.me/Leggit_dev')),
             Url(Const('📃Оферта'), id='service_url', url=Const('https://telegra.ph/PUBLICHNAYA-OFERTA-10-21-5')),
